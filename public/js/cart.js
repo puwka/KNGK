@@ -1,4 +1,34 @@
 document.addEventListener('DOMContentLoaded', async function() {
+    // Проверка авторизации и отображение аватарки
+    async function checkAuthAndRenderAvatar() {
+        const user = await checkAuth();
+        if (user && user.avatar) {
+            const profileLink = document.getElementById('profile-link');
+            if (profileLink) {
+                profileLink.innerHTML = '';
+                profileLink.style.backgroundColor = user.avatar_bg || '#74b9ff';
+                
+                const icon = document.createElement('i');
+                icon.className = 'fas ';
+                
+                switch(user.avatar) {
+                    case 'bear': icon.classList.add('fa-paw'); break;
+                    case 'cat': icon.classList.add('fa-cat'); break;
+                    case 'dog': icon.classList.add('fa-dog'); break;
+                    case 'fish': icon.classList.add('fa-fish'); break;
+                    case 'kiwi': icon.classList.add('fa-kiwi-bird'); break;
+                    case 'frog': icon.classList.add('fa-frog'); break;
+                    default: icon.classList.add('fa-user-circle');
+                }
+                
+                profileLink.appendChild(icon);
+            }
+        }
+    }
+
+    // Вызываем функцию при загрузке страницы
+    checkAuthAndRenderAvatar();
+
     // Элементы страницы
     const cartItemsContainer = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');

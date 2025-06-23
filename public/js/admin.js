@@ -510,17 +510,37 @@ document.addEventListener('DOMContentLoaded', async function() {
         return roles[role] || role;
     }
 
-    // Загрузка статистики
     async function loadStatistics() {
         try {
             // Получаем текущую дату
             const now = new Date();
+            const period = document.getElementById('stats-period').value;
             
-            // Загружаем статистику заказов
+            // Определяем дату начала в зависимости от периода
+            let startDate;
+            switch(period) {
+                case 'day':
+                    startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    break;
+                case 'week':
+                    startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay());
+                    break;
+                case 'month':
+                    startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+                    break;
+                case 'year':
+                    startDate = new Date(now.getFullYear(), 0, 1);
+                    break;
+                default:
+                    startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+            }
+            
+            // Загружаем статистику заказов (только выполненные)
             const { data: orders, error: ordersError } = await supabase
                 .from('orders')
                 .select('id, total, created_at')
-                .gte('created_at', new Date(now.getFullYear(), now.getMonth(), 1).toISOString())
+                .eq('status', 'delivered')
+                .gte('created_at', startDate.toISOString())
                 .lte('created_at', now.toISOString());
                 
             if (ordersError) throw ordersError;
@@ -529,17 +549,16 @@ document.addEventListener('DOMContentLoaded', async function() {
             const { data: users, error: usersError } = await supabase
                 .from('users')
                 .select('id, created_at')
-                .gte('created_at', new Date(now.getFullYear(), now.getMonth(), 1).toISOString())
+                .gte('created_at', startDate.toISOString())
                 .lte('created_at', now.toISOString());
                 
             if (usersError) throw usersError;
             
-            // Загружаем статистику товаров
+            // Загружаем статистику товаров из выполненных заказов
             const { data: orderItems, error: itemsError } = await supabase
                 .from('order_items')
-                .select('quantity')
-                .gte('created_at', new Date(now.getFullYear(), now.getMonth(), 1).toISOString())
-                .lte('created_at', now.toISOString());
+                .select('quantity, price, products:product_id (name)')
+                .in('order_id', orders.map(o => o.id));
                 
             if (itemsError) throw itemsError;
             
@@ -551,12 +570,106 @@ document.addEventListener('DOMContentLoaded', async function() {
             document.getElementById('products-sold').textContent = 
                 orderItems.reduce((sum, item) => sum + item.quantity, 0);
             
-            // TODO: Добавить графики с использованием Chart.js
+            // Создаем графики
+            createCharts(orders, orderItems);
             
         } catch (error) {
             console.error('Ошибка загрузки статистики:', error);
             showStatisticsError('Не удалось загрузить статистику');
         }
+    }
+
+    function createCharts(orders, orderItems) {
+        // Группируем заказы по дате для графика заказов
+        const ordersByDate = {};
+        orders.forEach(order => {
+            const date = new Date(order.created_at).toLocaleDateString();
+            ordersByDate[date] = (ordersByDate[date] || 0) + 1;
+        });
+        
+        // Группируем выручку по дате для графика выручки
+        const revenueByDate = {};
+        orders.forEach(order => {
+            const date = new Date(order.created_at).toLocaleDateString();
+            revenueByDate[date] = (revenueByDate[date] || 0) + order.total;
+        });
+        
+        // Группируем товары по популярности
+        const popularProducts = {};
+        orderItems.forEach(item => {
+            const productName = item.products?.name || 'Неизвестный товар';
+            popularProducts[productName] = (popularProducts[productName] || 0) + item.quantity;
+        });
+        
+        // Получаем контексты canvas
+        const ordersCtx = document.getElementById('orders-chart').getContext('2d');
+        const revenueCtx = document.getElementById('revenue-chart').getContext('2d');
+        
+        // Уничтожаем старые графики, если они есть
+        if (window.ordersChart) window.ordersChart.destroy();
+        if (window.revenueChart) window.revenueChart.destroy();
+        
+        // Создаем график заказов
+        window.ordersChart = new Chart(ordersCtx, {
+            type: 'line',
+            data: {
+                labels: Object.keys(ordersByDate),
+                datasets: [{
+                    label: 'Количество заказов',
+                    data: Object.values(ordersByDate),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Выполненные заказы по дням'
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Создаем график выручки
+        window.revenueChart = new Chart(revenueCtx, {
+            type: 'bar',
+            data: {
+                labels: Object.keys(revenueByDate),
+                datasets: [{
+                    label: 'Выручка (₽)',
+                    data: Object.values(revenueByDate),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Выручка по дням'
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     }
 
     // Загрузка настроек
