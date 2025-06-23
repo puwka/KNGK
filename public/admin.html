@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель | Шестёрочка</title>
+    <link rel="icon" href="img/img-logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Подключаем Chart.js для графиков в статистике -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Верхняя промо-полоса -->
+    <div class="promo-bar">
+        <div class="container">
+            <span><i class="fas fa-truck"></i> Бесплатная доставка от 1000₽</span>
+            <span><i class="fas fa-percentage"></i> Скидки до 50%</span>
+            <span><i class="fas fa-leaf"></i> Свежие продукты каждый день</span>
+        </div>
+    </div>
+
+    <header class="modern-header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <img src="img/img-logo.png" alt="Шестёрочка">
+                    <span>Шестёрочка</span>
+                </div>
+                <nav>
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Главная</a>
+                    <a href="catalog.html" class="nav-link"><i class="fas fa-store"></i> Каталог</a>
+                    <a href="promotions.html" class="nav-link"><i class="fas fa-tag"></i> Акции</a>
+                    <a href="recipes.html" class="nav-link"><i class="fas fa-utensils"></i> Рецепты</a>
+                    <a href="admin.html" class="nav-link active"><i class="fas fa-cog"></i> Админ</a>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск акций...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-icons">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="header-avatar" id="header-avatar">
+                        <!-- Аватар будет вставлен через JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-page">
+        <div class="container">
+            <div class="admin-container">
+                <aside class="admin-sidebar">
+                    <h3>Меню администратора</h3>
+                    <ul class="admin-nav">
+                        <li><a href="#orders" class="active"><i class="fas fa-shopping-bag"></i> Заказы</a></li>
+                        <li><a href="#products"><i class="fas fa-box-open"></i> Товары</a></li>
+                        <li><a href="#categories"><i class="fas fa-tags"></i> Категории</a></li>
+                        <li><a href="#users"><i class="fas fa-users"></i> Пользователи</a></li>
+                        <li><a href="#statistics"><i class="fas fa-chart-line"></i> Статистика</a></li>
+                        <li><a href="#settings"><i class="fas fa-cog"></i> Настройки</a></li>
+                    </ul>
+                </aside>
+                
+                <!-- Основной контент заказов -->
+                <div class="admin-content">
+                    <div class="admin-header">
+                        <h2><i class="fas fa-shopping-bag"></i> Управление заказами</h2>
+                        <div class="admin-actions">
+                            <select id="filter-status" class="btn">
+                                <option value="">Все статусы</option>
+                                <option value="pending">Ожидает обработки</option>
+                                <option value="processing">В обработке</option>
+                                <option value="shipped">Отправлен</option>
+                                <option value="delivered">Доставлен</option>
+                                <option value="cancelled">Отменен</option>
+                            </select>
+                            <input type="date" id="filter-date" class="btn">
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>ID заказа</th>
+                                    <th>Дата</th>
+                                    <th>Клиент</th>
+                                    <th>Сумма</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-list">
+                                <!-- Заказы будут загружены через JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Форма редактирования заказа (изначально скрыта) -->
+                    <div id="order-edit-form" style="display: none;">
+                        <div class="admin-header">
+                            <h2><i class="fas fa-edit"></i> Редактирование заказа</h2>
+                            <button class="btn" id="close-edit-form">
+                                <i class="fas fa-times"></i> Закрыть
+                            </button>
+                        </div>
+                        
+                        <form id="edit-order-form">
+                            <div class="order-form">
+                                <div>
+                                    <div class="order-form-section">
+                                        <h4>Информация о клиенте</h4>
+                                        <div class="input-group">
+                                            <input type="text" id="edit-customer-name" readonly>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" id="edit-customer-phone" readonly>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="order-form-section">
+                                        <h4>Доставка</h4>
+                                        <div class="input-group">
+                                            <select id="edit-delivery-method">
+                                                <option value="delivery">Доставка</option>
+                                                <option value="pickup">Самовывоз</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" id="edit-delivery-address">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="date" id="edit-delivery-date">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" id="edit-delivery-time">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="order-form-section">
+                                        <h4>Оплата</h4>
+                                        <div class="input-group">
+                                            <select id="edit-payment-method">
+                                                <option value="card">Картой онлайн</option>
+                                                <option value="cash">Наличными при получении</option>
+                                                <option value="card_courier">Картой курьеру</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group">
+                                            <select id="edit-payment-status">
+                                                <option value="pending">Ожидает оплаты</option>
+                                                <option value="paid">Оплачен</option>
+                                                <option value="failed">Ошибка оплаты</option>
+                                                <option value="refunded">Возврат</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="order-form-section">
+                                        <h4>Статус заказа</h4>
+                                        <div class="input-group">
+                                            <select id="edit-order-status">
+                                                <option value="pending">Ожидает обработки</option>
+                                                <option value="processing">В обработке</option>
+                                                <option value="assembled">Собран</option>
+                                                <option value="shipped">Отправлен</option>
+                                                <option value="delivered">Доставлен</option>
+                                                <option value="cancelled">Отменен</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group">
+                                            <textarea id="edit-admin-comment" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="order-items-list">
+                                <h4>Товары в заказе</h4>
+                                <div id="edit-order-items">
+                                    <!-- Товары будут загружены через JS -->
+                                </div>
+                                <div class="order-total">
+                                    <span>Итого:</span>
+                                    <span id="edit-order-total">0 ₽</span>
+                                </div>
+                            </div>
+                            
+                            <div class="admin-actions" style="margin-top: 30px;">
+                                <button type="submit" class="btn btn-large">
+                                    <i class="fas fa-save"></i> Сохранить изменения
+                                </button>
+                                <button type="button" class="btn btn-large" id="cancel-order-btn" style="background-color: #f5f5f5; color: #666;">
+                                    <i class="fas fa-times"></i> Отменить заказ
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="product-form-wrapper" style="display: none;">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Шестёрочка</h3>
+                    <p>Свежие продукты и товары повседневного спроса с доставкой на дом.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-odnoklassniki"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Покупателям</h3>
+                    <ul>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Акции</a></li>
+                        <li><a href="#">Рецепты</a></li>
+                        <li><a href="#">Бонусная программа</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>О компании</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Франшиза</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 8 (800) 555-66-77</li>
+                        <li><i class="fas fa-envelope"></i> info@shesterocka.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Продовольственная, 1</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Шестёрочка. Все права защищены.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-mir"></i>
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Инициализация Supabase
+        window.supabase = supabase.createClient(
+            'https://hmkcmsrinzqgjwezjfsh.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhta2Ntc3JpbnpxZ2p3ZXpqZnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjUyMzksImV4cCI6MjA2MjcwMTIzOX0.jUX8HwsjcQ9WrWSbUQSvjVL3FtqykjyvcuhDv7fPRU8'
+        );
+    </script>
+    <script src="js/supabase.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

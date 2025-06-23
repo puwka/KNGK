@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шестёрочка - Кулинарные рецепты</title>
+    <link rel="icon" href="img/img-logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Верхняя промо-полоса -->
+    <div class="promo-bar">
+        <div class="container">
+            <span><i class="fas fa-truck"></i> Бесплатная доставка от 1000₽</span>
+            <span><i class="fas fa-percentage"></i> Скидки до 50%</span>
+            <span><i class="fas fa-leaf"></i> Свежие продукты каждый день</span>
+        </div>
+    </div>
+
+    <header class="modern-header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <img src="img/img-logo.png" alt="Шестёрочка">
+                    <span>Шестёрочка</span>
+                </div>
+                <nav>
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Главная</a>
+                    <a href="catalog.html" class="nav-link"><i class="fas fa-store"></i> Каталог</a>
+                    <a href="promotions.html" class="nav-link"><i class="fas fa-tag"></i> Акции</a>
+                    <a href="recipes.html" class="nav-link active"><i class="fas fa-utensils"></i> Рецепты</a>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск акций...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-icons">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="header-avatar" id="header-avatar">
+                        <!-- Аватар будет вставлен через JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой-секция для рецептов -->
+    <section class="hero-recipes">
+        <div class="container">
+            <h1>Вкусные рецепты на каждый день</h1>
+            <p>Готовьте легко и быстро из продуктов Шестёрочки</p>
+            <div class="search-recipes">
+                <input type="text" placeholder="Например: паста, салат, суп...">
+                <button class="btn"><i class="fas fa-search"></i> Найти</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Категории рецептов -->
+    <section class="recipe-categories">
+        <div class="container">
+            <h2><i class="fas fa-list"></i> Категории рецептов</h2>
+            <div class="categories-grid" id="recipe-categories">
+                <!-- Категории будут загружены через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Популярные рецепты -->
+    <section class="featured-recipes">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-fire"></i> Популярные рецепты</h2>
+                <a href="#" class="view-all">Все рецепты <i class="fas fa-chevron-right"></i></a>
+            </div>
+            <div class="recipes-grid" id="popular-recipes">
+                <!-- Рецепты будут загружены через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Быстрые рецепты -->
+    <section class="quick-recipes">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-clock"></i> Быстрые рецепты</h2>
+                <p>Блюда, которые можно приготовить менее чем за 30 минут</p>
+            </div>
+            <div class="recipes-grid" id="quick-recipes">
+                <!-- Рецепты будут загружены через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Сезонные рецепты -->
+    <section class="seasonal-recipes">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-calendar-alt"></i> Сезонные рецепты</h2>
+                <p>Блюда из сезонных продуктов</p>
+            </div>
+            <div class="recipes-grid" id="seasonal-recipes">
+                <!-- Рецепты будут загружены через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Рассылка рецептов -->
+    <section class="recipe-newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h3>Получайте новые рецепты на почту</h3>
+                <p>Подпишитесь на рассылку и получайте свежие рецепты каждую неделю</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Ваш email">
+                    <button type="submit" class="btn">Подписаться</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Шестёрочка</h3>
+                    <p>Свежие продукты и товары повседневного спроса с доставкой на дом.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-odnoklassniki"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Покупателям</h3>
+                    <ul>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Акции</a></li>
+                        <li><a href="#">Рецепты</a></li>
+                        <li><a href="#">Бонусная программа</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>О компании</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Франшиза</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 8 (800) 555-66-77</li>
+                        <li><i class="fas fa-envelope"></i> info@shesterocka.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Продовольственная, 1</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Шестёрочка. Все права защищены.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-mir"></i>
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Инициализация Supabase
+        window.supabase = supabase.createClient(
+            'https://hmkcmsrinzqgjwezjfsh.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhta2Ntc3JpbnpxZ2p3ZXpqZnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjUyMzksImV4cCI6MjA2MjcwMTIzOX0.jUX8HwsjcQ9WrWSbUQSvjVL3FtqykjyvcuhDv7fPRU8'
+        );
+    </script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/recipes.js"></script>
+</body>
+</html>

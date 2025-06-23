@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог | Шестёрочка</title>
+    <link rel="icon" href="img/img-logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Верхняя промо-полоса -->
+    <div class="promo-bar">
+        <div class="container">
+            <span><i class="fas fa-truck"></i> Бесплатная доставка от 1000₽</span>
+            <span><i class="fas fa-percentage"></i> Скидки до 50%</span>
+            <span><i class="fas fa-leaf"></i> Свежие продукты каждый день</span>
+        </div>
+    </div>
+
+    <header class="modern-header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <img src="img/img-logo.png" alt="Шестёрочка">
+                    <span>Шестёрочка</span>
+                </div>
+                <nav>
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Главная</a>
+                    <a href="catalog.html" class="nav-link active"><i class="fas fa-store"></i> Каталог</a>
+                    <a href="promotions.html" class="nav-link"><i class="fas fa-tag"></i> Акции</a>
+                    <a href="recipes.html" class="nav-link"><i class="fas fa-utensils"></i> Рецепты</a>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск продуктов..." id="search-input">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-icons">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="user-avatar-container" id="user-avatar-container">
+                        <!-- Иконка пользователя по умолчанию -->
+                        <a href="profile.html" id="profile-link" class="user-icon">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="catalog-page">
+        <section class="catalog-section">
+            <div class="container">
+                <div class="section-header">
+                    <h1><i class="fas fa-store"></i> Каталог товаров</h1>
+                    <div class="sort-options">
+                        <select id="sort-select">
+                            <option value="popular">По популярности</option>
+                            <option value="price_asc">По возрастанию цены</option>
+                            <option value="price_desc">По убыванию цены</option>
+                            <option value="newest">Сначала новые</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="category-filter">
+                    <button class="category-btn active" data-category="all">Все товары</button>
+                    <button class="category-btn" data-category="8b2c25b7-ae52-4074-b006-3cc5a5af7228">
+                        <i class="fas fa-apple-alt"></i> Овощи и фрукты
+                    </button>
+                    <button class="category-btn" data-category="12d64d5f-f9ab-47d3-ae5b-dcc6e0cfe703">
+                        <i class="fas fa-drumstick-bite"></i> Мясо и рыба
+                    </button>
+                    <button class="category-btn" data-category="77b86d2a-4a51-4bf4-958e-e9115419ca80">
+                        <i class="fas fa-cheese"></i> Молочные продукты
+                    </button>
+                    <button class="category-btn" data-category="2a26625a-8aa0-4e71-996b-98a8630ec604">
+                        <i class="fas fa-bread-slice"></i> Бакалея
+                    </button>
+                    <button class="category-btn" data-category="a30c4060-5fa1-4f65-997c-05cc50b2d399">
+                        <i class="fas fa-wine-bottle"></i> Напитки
+                    </button>
+                </div>
+                
+                <div class="products-grid" id="catalog-products">
+                    <!-- Товары будут загружаться через JS -->
+                    <div class="product-card skeleton">
+                        <div class="product-image"></div>
+                        <div class="product-info">
+                            <h3></h3>
+                            <p></p>
+                            <div class="product-price"></div>
+                            <button class="add-to-cart"></button>
+                        </div>
+                    </div>
+                    <div class="product-card skeleton">
+                        <div class="product-image"></div>
+                        <div class="product-info">
+                            <h3></h3>
+                            <p></p>
+                            <div class="product-price"></div>
+                            <button class="add-to-cart"></button>
+                        </div>
+                    </div>
+                    <div class="product-card skeleton">
+                        <div class="product-image"></div>
+                        <div class="product-info">
+                            <h3></h3>
+                            <p></p>
+                            <div class="product-price"></div>
+                            <button class="add-to-cart"></button>
+                        </div>
+                    </div>
+                    <div class="product-card skeleton">
+                        <div class="product-image"></div>
+                        <div class="product-info">
+                            <h3></h3>
+                            <p></p>
+                            <div class="product-price"></div>
+                            <button class="add-to-cart"></button>
+                        </div>
+                    </div>
+                    <!-- Повторить несколько раз для скелетона -->
+                </div>
+                
+                <div class="pagination">
+                    <button id="prev-page" disabled><i class="fas fa-chevron-left"></i></button>
+                    <span id="page-info">Страница 1</span>
+                    <button id="next-page"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Шестёрочка</h3>
+                    <p>Свежие продукты и товары повседневного спроса с доставкой на дом.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-odnoklassniki"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Покупателям</h3>
+                    <ul>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Акции</a></li>
+                        <li><a href="#">Рецепты</a></li>
+                        <li><a href="#">Бонусная программа</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>О компании</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Франшиза</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 8 (800) 555-66-77</li>
+                        <li><i class="fas fa-envelope"></i> info@shesterocka.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Продовольственная, 1</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Шестёрочка. Все права защищены.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-mir"></i>
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="auth-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="logo-mini">Шестёрочка</div>
+                <span class="close-modal">&times;</span>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Вход</button>
+                <button class="tab-btn" data-tab="register">Регистрация</button>
+                <div class="tab-indicator"></div>
+            </div>
+            
+            <div id="login-form" class="auth-form active">
+                <div class="form-icon">
+                    <svg viewBox="0 0 24 24" fill="#4CAF50">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </div>
+                <div class="input-group">
+                    <input type="tel" id="login-phone" placeholder=" " required>
+                    <label>Номер телефона</label>
+                    <div class="underline"></div>
+                </div>
+                <button id="login-btn" class="btn">
+                    <span>Продолжить</span>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/>
+                    </svg>
+                </button>
+                <p class="auth-error" id="login-error"></p>
+            </div>
+            
+            <div id="register-form" class="auth-form">
+                <div class="form-icon">
+                    <svg viewBox="0 0 24 24" fill="#4CAF50">
+                        <path d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12M5,15L4.4,14.5C2.4,12.6 1,11.4 1,9.9C1,8.7 2,7.7 3.2,7.7C3.9,7.7 4.6,8 5,8.5C5.4,8 6.1,7.7 6.8,7.7C8,7.7 9,8.6 9,9.9C9,11.4 7.6,12.6 5.6,14.5L5,15Z"/>
+                    </svg>
+                </div>
+                <div class="input-group">
+                    <input type="tel" id="register-phone" placeholder=" " required>
+                    <label>Номер телефона</label>
+                    <div class="underline"></div>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="register-name" placeholder=" " required>
+                    <label>Ваше имя</label>
+                    <div class="underline"></div>
+                </div>
+                <button id="register-btn" class="btn">
+                    <span>Зарегистрироваться</span>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                    </svg>
+                </button>
+                <p class="auth-error" id="register-error"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно товара -->
+    <div id="product-modal" class="product-modal">
+        <div class="product-modal-content">
+            <button class="product-modal-close">&times;</button>
+            <div class="product-modal-body">
+                <div class="product-modal-image">
+                    <!-- Изображение будет загружено через JS -->
+                </div>
+                <div class="product-modal-info">
+                    <h2 class="product-modal-title"></h2>
+                    <span class="product-modal-category"></span>
+                    
+                    <div class="product-modal-price">
+                        <span class="product-modal-current-price"></span>
+                        <span class="product-modal-old-price"></span>
+                        <span class="product-modal-discount"></span>
+                    </div>
+                    
+                    <div class="product-modal-stock">
+                        <i class="fas fa-box"></i>
+                        <span class="stock-text"></span>
+                    </div>
+                    
+                    <div class="product-modal-description"></div>
+                    
+                    <div class="product-modal-actions">
+                        <div class="product-modal-quantity">
+                            <button class="quantity-minus">-</button>
+                            <input type="number" value="1" min="1" class="quantity-input">
+                            <button class="quantity-plus">+</button>
+                        </div>
+                        <button class="product-modal-add">
+                            <i class="fas fa-cart-plus"></i>
+                            <span>В корзину</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/imask"></script>
+    <script>
+        // Инициализация Supabase
+        window.supabase = supabase.createClient(
+            'https://hmkcmsrinzqgjwezjfsh.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhta2Ntc3JpbnpxZ2p3ZXpqZnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjUyMzksImV4cCI6MjA2MjcwMTIzOX0.jUX8HwsjcQ9WrWSbUQSvjVL3FtqykjyvcuhDv7fPRU8'
+        );
+    </script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/catalog.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Акции и спецпредложения | Шестёрочка</title>
+    <link rel="icon" href="img/img-logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Верхняя промо-полоса -->
+    <div class="promo-bar">
+        <div class="container">
+            <span><i class="fas fa-truck"></i> Бесплатная доставка от 1000₽</span>
+            <span><i class="fas fa-percentage"></i> Скидки до 50%</span>
+            <span><i class="fas fa-leaf"></i> Свежие продукты каждый день</span>
+        </div>
+    </div>
+
+    <header class="modern-header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <img src="img/img-logo.png" alt="Шестёрочка">
+                    <span>Шестёрочка</span>
+                </div>
+                <nav>
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Главная</a>
+                    <a href="catalog.html" class="nav-link"><i class="fas fa-store"></i> Каталог</a>
+                    <a href="promotions.html" class="nav-link active"><i class="fas fa-tag"></i> Акции</a>
+                    <a href="recipes.html" class="nav-link"><i class="fas fa-utensils"></i> Рецепты</a>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск акций...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-icons">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="header-avatar" id="header-avatar">
+                        <!-- Аватар будет вставлен через JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент страницы акций -->
+    <main class="promotions-page">
+        <section class="hero-promo">
+            <div class="container">
+                <h1><i class="fas fa-fire"></i> Горячие акции и спецпредложения</h1>
+                <p>Экономить - это вкусно! Скидки до 50% на самые популярные товары</p>
+            </div>
+        </section>
+
+        <section class="current-promotions">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-bolt"></i> Текущие акции</h2>
+                    <div class="time-left">
+                        <i class="far fa-clock"></i> До конца акций: <span id="promo-timer">2 дня 14:32:15</span>
+                    </div>
+                </div>
+
+                <div class="promotions-grid" id="current-promotions">
+                    <!-- Акции будут загружаться через JS -->
+                    <div class="skeleton-promo">
+                        <div class="skeleton-promo-image"></div>
+                        <div class="skeleton-promo-content">
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line short"></div>
+                            <div class="skeleton-button"></div>
+                        </div>
+                    </div>
+                    <!-- Повторяем для 5 скелетонов -->
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-products">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-percentage"></i> Товары со скидкой</h2>
+                    <div class="sort-options">
+                        <select id="sort-products">
+                            <option value="popular">По популярности</option>
+                            <option value="discount">По размеру скидки</option>
+                            <option value="price-asc">По возрастанию цены</option>
+                            <option value="price-desc">По убыванию цены</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="products-grid" id="discounted-products">
+                    <!-- Товары со скидкой будут загружаться через JS -->
+                </div>
+
+                <div class="load-more">
+                    <button id="load-more-btn" class="btn btn-large">
+                        Показать еще <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-banner">
+            <div class="container">
+                <div class="promo-banner-content">
+                    <h3>Специальное предложение для новых клиентов!</h3>
+                    <p>Зарегистрируйтесь и получите скидку 15% на первый заказ</p>
+                    <a href="#" class="btn btn-large" id="register-promo-btn">
+                        Получить скидку <i class="fas fa-gift"></i>
+                    </a>
+                </div>
+                <div class="promo-banner-image">
+                    <img src="img/orange.png" alt="Специальное предложение">
+                </div>
+            </div>
+        </section>
+
+        <section class="archive-promotions">
+            <div class="container">
+                <h2><i class="fas fa-archive"></i> Архив акций</h2>
+                <p>Посмотрите, какие акции проходили у нас ранее</p>
+                
+                <div class="archive-grid" id="archive-promotions">
+                    <!-- Архивные акции будут загружаться через JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Шестёрочка</h3>
+                    <p>Свежие продукты и товары повседневного спроса с доставкой на дом.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-odnoklassniki"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Покупателям</h3>
+                    <ul>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Акции</a></li>
+                        <li><a href="#">Рецепты</a></li>
+                        <li><a href="#">Бонусная программа</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>О компании</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Франшиза</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 8 (800) 555-66-77</li>
+                        <li><i class="fas fa-envelope"></i> info@shesterocka.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Продовольственная, 1</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Шестёрочка. Все права защищены.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-mir"></i>
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для получения скидки -->
+    <div id="discount-modal" class="modal" style="display: none;">
+        <div class="modal-content discount-modal">
+            <div class="modal-header">
+                <h3>Шестёрочка</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            
+            <div class="discount-content">
+                <h4>Получите скидку 15% на первый заказ!</h4>
+                <p>Оставьте свой email, и мы отправим вам промокод на скидку</p>
+                
+                <div class="input-group">
+                    <input type="email" id="discount-email" placeholder=" " required>
+                    <label>Ваш email</label>
+                    <div class="underline"></div>
+                </div>
+                
+                <button id="get-discount-btn" class="modal-btn">
+                    <span>Получить скидку</span>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2,4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z"/>
+                    </svg>
+                </button>
+                
+                <p class="privacy-text">
+                    Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a>
+                </p>
+                
+                <div class="success-message" id="discount-success" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <h5>Спасибо!</h5>
+                    <p>Промокод отправлен на ваш email</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Инициализация Supabase
+        window.supabase = supabase.createClient(
+            'https://hmkcmsrinzqgjwezjfsh.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhta2Ntc3JpbnpxZ2p3ZXpqZnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjUyMzksImV4cCI6MjA2MjcwMTIzOX0.jUX8HwsjcQ9WrWSbUQSvjVL3FtqykjyvcuhDv7fPRU8'
+        );
+    </script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/promotions.js"></script>
+</body>
+</html>

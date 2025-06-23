@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина | Шестёрочка</title>
+    <link rel="icon" href="img/img-logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Добавляем API Яндекс.Карт -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_api_ключ&lang=ru_RU" type="text/javascript"></script>
+</head>
+<body>
+    <!-- Верхняя промо-полоса -->
+    <div class="promo-bar">
+        <div class="container">
+            <span><i class="fas fa-truck"></i> Бесплатная доставка от 1000₽</span>
+            <span><i class="fas fa-percentage"></i> Скидки до 50%</span>
+            <span><i class="fas fa-leaf"></i> Свежие продукты каждый день</span>
+        </div>
+    </div>
+
+    <header class="modern-header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <img src="img/img-logo.png" alt="Шестёрочка">
+                    <span>Шестёрочка</span>
+                </div>
+                <nav>
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Главная</a>
+                    <a href="catalog.html" class="nav-link"><i class="fas fa-store"></i> Каталог</a>
+                    <a href="promotions.html" class="nav-link"><i class="fas fa-tag"></i> Акции</a>
+                    <a href="recipes.html" class="nav-link"><i class="fas fa-utensils"></i> Рецепты</a>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск продуктов...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-icons">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="profile.html" id="profile-link" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-page">
+        <div class="container">
+            <div class="cart-container">
+                <div class="cart-content">
+                    <!-- Секция корзины -->
+                    <section id="cart-section">
+                        <div class="cart-header">
+                            <h1><i class="fas fa-shopping-cart"></i> Корзина</h1>
+                            <div class="cart-total" id="cart-total">0 ₽</div>
+                        </div>
+                        
+                        <div id="empty-cart-message" class="empty-cart-message">
+                            <i class="fas fa-shopping-basket"></i>
+                            <h3>Ваша корзина пуста</h3>
+                            <p>Добавьте товары из каталога, чтобы продолжить покупки</p>
+                            <a href="catalog.html" class="btn btn-large">
+                                <i class="fas fa-store"></i> Перейти в каталог
+                            </a>
+                        </div>
+                        
+                        <div id="cart-content" style="display: none;">
+                            <div class="cart-items" id="cart-items">
+                                <!-- Товары будут загружены через JS -->
+                            </div>
+                            
+                            <div class="cart-actions">
+                                <a href="catalog.html" class="btn btn-outline">
+                                    <i class="fas fa-arrow-left"></i> Продолжить покупки
+                                </a>
+                                <button class="btn" id="checkout-btn">
+                                    Оформить заказ <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Секция оформления заказа -->
+                    <section id="checkout-section" class="checkout-section">
+                        <div class="checkout-header">
+                            <button class="btn btn-outline" id="back-to-cart">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1>Оформление заказа</h1>
+                        </div>
+                        
+                        <form id="order-form">
+                            <div class="checkout-form">
+                                <div>
+                                    <div class="form-section">
+                                        <h3>Способ доставки</h3>
+                                        <div class="radio-group">
+                                            <label class="radio-option">
+                                                <input type="radio" name="delivery" value="delivery" checked>
+                                                <span>Доставка</span>
+                                            </label>
+                                            <label class="radio-option">
+                                                <input type="radio" name="delivery" value="pickup">
+                                                <span>Самовывоз</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-section delivery-address-section">
+                                        <h3>Адрес доставки</h3>
+                                        <div class="input-group">
+                                            <input type="text" id="delivery-address" placeholder="Укажите адрес доставки">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-section pickup-point-section" style="display: none;">
+                                        <h3>Выберите магазин</h3>
+                                        <div id="pickup-map" style="height: 300px; width: 100%; margin-bottom: 15px;"></div>
+                                        <div class="input-group">
+                                            <select id="pickup-point">
+                                                <option value="">Выберите магазин</option>
+                                                <option value="1">ул. 50 лет СССР, 13</option>
+                                                <option value="2">ул. Советская улица, 101</option>
+                                                <option value="3">ул. Ленина, 3</option>
+                                                <option value="4">ул. Советская улица, 199В</option>
+                                                <option value="5">ул. Свердлова, 86</option>
+                                                <option value="6">ул. Окружная улица, 3А</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-section">
+                                        <h3>Дата и время доставки</h3>
+                                        <div class="input-group">
+                                            <input type="date" id="delivery-date">
+                                        </div>
+                                        <div class="input-group">
+                                            <select id="delivery-time">
+                                                <option value="">Выберите время</option>
+                                                <option value="10:00-12:00">10:00 - 12:00</option>
+                                                <option value="12:00-14:00">12:00 - 14:00</option>
+                                                <option value="14:00-16:00">14:00 - 16:00</option>
+                                                <option value="16:00-18:00">16:00 - 18:00</option>
+                                                <option value="18:00-20:00">18:00 - 20:00</option>
+                                                <option value="20:00-22:00">20:00 - 22:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="form-section">
+                                        <h3>Способ оплаты</h3>
+                                        <div class="radio-group" id="payment-methods">
+                                            <label class="radio-option">
+                                                <input type="radio" name="payment" value="card" checked>
+                                                <span>Картой онлайн</span>
+                                            </label>
+                                            <label class="radio-option">
+                                                <input type="radio" name="payment" value="cash">
+                                                <span>Наличными при получении</span>
+                                            </label>
+                                            <label class="radio-option payment-courier">
+                                                <input type="radio" name="payment" value="card_courier">
+                                                <span>Картой курьеру</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-section">
+                                        <h3>Комментарий к заказу</h3>
+                                        <div class="input-group">
+                                            <textarea class="textar" rows="4" placeholder="Дополнительные пожелания"></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-large" style="width: 100%; margin-top: 13px;">
+                                        <i class="fas fa-check"></i> Подтвердить заказ
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+                
+                <div class="order-summary-container">
+                    <div class="order-summary" id="order-summary">
+                        <h3>Ваш заказ</h3>
+                        <div class="summary-section">
+                            <h4>Доставка</h4>
+                            <p>Доставка по адресу</p>
+                            <p>Выберите адрес</p>
+                        </div>
+                        <div class="summary-section">
+                            <h4>Оплата</h4>
+                            <p>Картой онлайн</p>
+                        </div>
+                        <div class="summary-total">
+                            <h4>Итого</h4>
+                            <p id="order-total">0 ₽</p>
+                        </div>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h3>Товары в заказе</h3>
+                        <div id="order-items-list">
+                            <!-- Товары будут загружены через JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Шестёрочка</h3>
+                    <p>Свежие продукты и товары повседневного спроса с доставкой на дом.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-odnoklassniki"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Покупателям</h3>
+                    <ul>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Акции</a></li>
+                        <li><a href="#">Рецепты</a></li>
+                        <li><a href="#">Бонусная программа</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>О компании</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Франшиза</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 8 (800) 555-66-77</li>
+                        <li><i class="fas fa-envelope"></i> info@shesterocka.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Продовольственная, 1</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Шестёрочка. Все права защищены.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-mir"></i>
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="auth-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="logo-mini">Шестёрочка</div>
+                <span class="close-modal">&times;</span>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Вход</button>
+                <button class="tab-btn" data-tab="register">Регистрация</button>
+                <div class="tab-indicator"></div>
+            </div>
+            
+            <div id="login-form" class="auth-form active">
+                <div class="form-icon">
+                    <svg viewBox="0 0 24 24" fill="#4CAF50">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </div>
+                <div class="input-group">
+                    <input type="tel" id="login-phone" placeholder=" " required>
+                    <label>Номер телефона</label>
+                    <div class="underline"></div>
+                </div>
+                <button id="login-btn" class="btn">
+                    <span>Продолжить</span>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"/>
+                    </svg>
+                </button>
+                <p class="auth-error" id="login-error"></p>
+            </div>
+            
+            <div id="register-form" class="auth-form">
+                <div class="form-icon">
+                    <svg viewBox="0 0 24 24" fill="#4CAF50">
+                        <path d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12M5,15L4.4,14.5C2.4,12.6 1,11.4 1,9.9C1,8.7 2,7.7 3.2,7.7C3.9,7.7 4.6,8 5,8.5C5.4,8 6.1,7.7 6.8,7.7C8,7.7 9,8.6 9,9.9C9,11.4 7.6,12.6 5.6,14.5L5,15Z"/>
+                    </svg>
+                </div>
+                <div class="input-group">
+                    <input type="tel" id="register-phone" placeholder=" " required>
+                    <label>Номер телефона</label>
+                    <div class="underline"></div>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="register-name" placeholder=" " required>
+                    <label>Ваше имя</label>
+                    <div class="underline"></div>
+                </div>
+                <button id="register-btn" class="btn">
+                    <span>Зарегистрироваться</span>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                    </svg>
+                </button>
+                <p class="auth-error" id="register-error"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/imask"></script>
+    <script>
+        // Инициализация Supabase
+        window.supabase = supabase.createClient(
+            'https://hmkcmsrinzqgjwezjfsh.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhta2Ntc3JpbnpxZ2p3ZXpqZnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjUyMzksImV4cCI6MjA2MjcwMTIzOX0.jUX8HwsjcQ9WrWSbUQSvjVL3FtqykjyvcuhDv7fPRU8'
+        );
+    </script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

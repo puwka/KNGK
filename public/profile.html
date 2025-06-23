@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль | Шестёрочка</title>
+    <link rel="icon" href="img/img-logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="promo-bar">
+        <div class="container">
+            <span><i class="fas fa-truck"></i> Бесплатная доставка от 1000₽</span>
+            <span><i class="fas fa-percentage"></i> Скидки до 50%</span>
+            <span><i class="fas fa-leaf"></i> Свежие продукты каждый день</span>
+        </div>
+    </div>
+
+    <header class="modern-header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <img src="img/img-logo.png" alt="Шестёрочка">
+                    <span>Шестёрочка</span>
+                </div>
+                <nav>
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Главная</a>
+                    <a href="catalog.html" class="nav-link"><i class="fas fa-store"></i> Каталог</a>
+                    <a href="promotions.html" class="nav-link"><i class="fas fa-tag"></i> Акции</a>
+                    <a href="recipes.html" class="nav-link"><i class="fas fa-utensils"></i> Рецепты</a>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск продуктов...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <!-- В разделе header-right, рядом с иконкой корзины -->
+                <div class="header-icons">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="header-avatar" id="header-avatar">
+                        <!-- Аватар будет вставлен через JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="container">
+            <div class="profile-grid">
+                <section class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar-container">
+                            <div class="profile-avatar" id="profile-avatar">
+                                <!-- Аватар будет вставлен через JS -->
+                            </div>
+                            <button class="avatar-edit-btn" id="avatar-edit-btn">
+                                <i class="fas fa-pencil"></i>
+                            </button>
+                        </div>
+                        <h1 id="profile-name">Загрузка...</h1>
+                        <p class="profile-phone" id="profile-phone"></p>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <a href="cart.html" class="profile-action-btn">
+                            <i class="fas fa-shopping-cart"></i> Моя корзина
+                        </a>
+                        <a href="#" class="profile-action-btn" id="favorites-tab-btn">
+                            <i class="fas fa-heart"></i> Избранное
+                        </a>
+                        <a href="#" class="profile-action-btn" id="orders-tab-btn">
+                            <i class="fas fa-clipboard-list"></i> Мои заказы
+                        </a>
+                        <button id="logout-btn" class="profile-action-btn logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Выйти
+                        </button>
+                    </div>
+                </section>
+                
+                <section class="content-section">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="orders">Мои заказы</button>
+                        <button class="tab-btn" data-tab="favorites">Избранные рецепты</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="orders-tab">
+                        <div class="orders-list" id="orders-list">
+                            <div class="order-placeholder">
+                                <i class="fas fa-clipboard-list"></i>
+                                <p>У вас пока нет заказов</p>
+                                <a href="catalog.html" class="btn">Перейти в каталог</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="favorites-tab">
+                        <div class="favorites-grid" id="favorites-list">
+                            <div class="favorites-placeholder">
+                                <i class="fas fa-heart"></i>
+                                <p>У вас пока нет избранных рецептов</p>
+                                <a href="recipes.html" class="btn">Перейти к рецептам</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Модальное окно для выбора аватара -->
+    <div class="modal" id="avatar-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Выберите аватар</h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="avatar-options">
+                    <h4>Выберите животное:</h4>
+                    <div class="avatar-icons">
+                        <div class="avatar-icon" data-avatar="bear">
+                            <i class="fas fa-paw"></i>
+                            <span>Медведь</span>
+                        </div>
+                        <div class="avatar-icon" data-avatar="cat">
+                            <i class="fas fa-cat"></i>
+                            <span>Кошка</span>
+                        </div>
+                        <div class="avatar-icon" data-avatar="dog">
+                            <i class="fas fa-dog"></i>
+                            <span>Собака</span>
+                        </div>
+                        <div class="avatar-icon" data-avatar="fish">
+                            <i class="fas fa-fish"></i>
+                            <span>Рыба</span>
+                        </div>
+                        <div class="avatar-icon" data-avatar="kiwi">
+                            <i class="fas fa-kiwi-bird"></i>
+                            <span>Птица</span>
+                        </div>
+                        <div class="avatar-icon" data-avatar="frog">
+                            <i class="fas fa-frog"></i>
+                            <span>Лягушка</span>
+                        </div>
+                    </div>
+                    
+                    <h4>Выберите цвет фона:</h4>
+                    <div class="color-options">
+                        <div class="color-option" style="background-color: #ff7675;" data-color="#ff7675"></div>
+                        <div class="color-option" style="background-color: #74b9ff;" data-color="#74b9ff"></div>
+                        <div class="color-option" style="background-color: #55efc4;" data-color="#55efc4"></div>
+                        <div class="color-option" style="background-color: #a29bfe;" data-color="#a29bfe"></div>
+                        <div class="color-option" style="background-color: #ffeaa7;" data-color="#ffeaa7"></div>
+                        <div class="color-option" style="background-color: #fd79a8;" data-color="#fd79a8"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="save-avatar-btn">Сохранить</button>
+                <button class="btn btn-outline" id="cancel-avatar-btn">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Шестёрочка</h3>
+                    <p>Свежие продукты и товары повседневного спроса с доставкой на дом.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-odnoklassniki"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Покупателям</h3>
+                    <ul>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Акции</a></li>
+                        <li><a href="#">Рецепты</a></li>
+                        <li><a href="#">Бонусная программа</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>О компании</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Франшиза</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 8 (800) 555-66-77</li>
+                        <li><i class="fas fa-envelope"></i> info@shesterocka.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Продовольственная, 1</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Шестёрочка. Все права защищены.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-mir"></i>
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Виджет поддержки -->
+    <div class="support-widget">
+        <button class="support-button" id="support-button">
+            <i class="fas fa-headset"></i>
+        </button>
+        <div class="support-chat" id="support-chat">
+            <div class="chat-header">
+                <h3>Поддержка</h3>
+                <button class="close-chat" id="close-chat">&times;</button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="chat-messages" id="chat-messages"></div>
+            </div>
+            <div class="chat-status" id="chat-status">Онлайн</div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Введите сообщение...">
+                <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Инициализация Supabase
+        window.supabase = supabase.createClient(
+            'https://hmkcmsrinzqgjwezjfsh.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhta2Ntc3JpbnpxZ2p3ZXpqZnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjUyMzksImV4cCI6MjA2MjcwMTIzOX0.jUX8HwsjcQ9WrWSbUQSvjVL3FtqykjyvcuhDv7fPRU8'
+        );
+    </script>
+    <script src="js/profile.js"></script>
+    <script src="js/support.js"></script>
+</body>
+</html>

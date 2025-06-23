@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поддержка | Шестёрочка</title>
+    <link rel="icon" href="img/img-logo.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Верхняя промо-полоса -->
+    <div class="promo-bar">
+        <div class="container">
+            <span><i class="fas fa-truck"></i> Бесплатная доставка от 1000₽</span>
+            <span><i class="fas fa-percentage"></i> Скидки до 50%</span>
+            <span><i class="fas fa-leaf"></i> Свежие продукты каждый день</span>
+        </div>
+    </div>
+
+    <header class="modern-header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <img src="img/img-logo.png" alt="Шестёрочка">
+                    <span>Шестёрочка</span>
+                </div>
+                <nav>
+                    <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Главная</a>
+                    <a href="catalog.html" class="nav-link"><i class="fas fa-store"></i> Каталог</a>
+                    <a href="promotions.html" class="nav-link"><i class="fas fa-tag"></i> Акции</a>
+                    <a href="recipes.html" class="nav-link"><i class="fas fa-utensils"></i> Рецепты</a>
+                    <a href="support.html" class="nav-link active"><i class="fas fa-headset"></i> Поддержка</a>
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск продуктов...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="header-icons">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="profile.html" id="profile-link" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="support-page">
+        <div class="container">
+            <div class="support-container">
+                <h1><i class="fas fa-headset"></i> Поддержка клиентов</h1>
+                
+                <div class="support-tabs">
+                    <button class="tab-btn active" data-tab="sessions">Открытые обращения</button>
+                    <button class="tab-btn" data-tab="archive">Архив</button>
+                    <div class="tab-indicator"></div>
+                </div>
+                
+                <div class="support-chat-container">
+                    <div class="support-sidebar">
+                        <div class="search-support">
+                            <input type="text" id="support-search" placeholder="Поиск по обращениям...">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="support-sessions" id="support-sessions">
+                            <!-- Список сессий будет загружен через JS -->
+                            <div class="no-sessions">
+                                <i class="fas fa-comments" style="font-size: 3rem; color: #ccc;"></i>
+                                <p>Нет активных обращений</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="support-messages-container">
+                        <div class="support-messages" id="support-messages">
+                            <div class="no-session">
+                                <i class="fas fa-comment-alt" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
+                                <h3>Выберите чат для просмотра сообщений</h3>
+                                <p>Выберите обращение из списка слева, чтобы начать общение</p>
+                            </div>
+                        </div>
+                        
+                        <div class="support-response" id="support-response" style="display: none;">
+                            <div class="response-header">
+                                <h4>Ответ на обращение</h4>
+                                <div class="response-actions">
+                                    <button id="close-session" class="btn btn-small btn-outline">
+                                        <i class="fas fa-lock"></i> Закрыть обращение
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea id="support-response-input" placeholder="Введите ваш ответ..."></textarea>
+                            <div class="response-footer">
+                                <button id="send-support-response" class="btn">
+                                    <i class="fas fa-paper-plane"></i> Отправить
+                                </button>
+                                <div class="quick-responses">
+                                    <span>Быстрые ответы:</span>
+                                    <select id="quick-responses">
+                                        <option value="">Выберите шаблон</option>
+                                        <option value="Спасибо за обращение! Мы решим ваш вопрос в ближайшее время.">Стандартный ответ</option>
+                                        <option value="Для решения вашего вопроса нам нужна дополнительная информация.">Запрос информации</option>
+                                        <option value="Ваш вопрос решён. Если у вас есть ещё вопросы, обращайтесь!">Решение вопроса</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Шестёрочка</h3>
+                    <p>Свежие продукты и товары повседневного спроса с доставкой на дом.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-odnoklassniki"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Покупателям</h3>
+                    <ul>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Акции</a></li>
+                        <li><a href="#">Рецепты</a></li>
+                        <li><a href="#">Бонусная программа</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>О компании</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Франшиза</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 8 (800) 555-66-77</li>
+                        <li><i class="fas fa-envelope"></i> info@shesterocka.ru</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Продовольственная, 1</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Шестёрочка. Все права защищены.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-mir"></i>
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Виджет поддержки -->
+    <div class="support-widget">
+        <button class="support-button" id="support-button">
+            <i class="fas fa-headset"></i>
+        </button>
+        <div class="support-chat" id="support-chat">
+            <div class="chat-header">
+                <h3>Поддержка</h3>
+                <button class="close-chat" id="close-chat">&times;</button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="chat-messages" id="chat-messages"></div>
+            </div>
+            <div class="chat-status" id="chat-status">Онлайн</div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Введите сообщение...">
+                <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Инициализация Supabase
+        window.supabase = supabase.createClient(
+            'https://hmkcmsrinzqgjwezjfsh.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhta2Ntc3JpbnpxZ2p3ZXpqZnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjUyMzksImV4cCI6MjA2MjcwMTIzOX0.jUX8HwsjcQ9WrWSbUQSvjVL3FtqykjyvcuhDv7fPRU8'
+        );
+    </script>
+    <script src="js/supabase.js"></script>
+    <script src="js/support.js"></script>
+</body>
+</html>

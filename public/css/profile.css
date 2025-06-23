@@ -1,0 +1,963 @@
+/* Основные стили профиля */
+.profile-main {
+    padding: 40px 0;
+    background-color: #f9f9f9;
+    min-height: calc(100vh - 200px);
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+}
+
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 30px;
+    height: fit-content;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 40px;
+    color: var(--primary-color);
+    font-size: 100px;
+    display: block;
+}
+
+.profile-card h1 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+    margin-top: 0;
+    line-height: 1.3;
+}
+
+.profile-phone {
+    color: #666;
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.profile-action-btn:hover {
+    background-color: var(--light-color);
+    border-color: var(--accent-color);
+    color: var(--dark-color);
+}
+
+.profile-action-btn i {
+    width: 20px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.logout-btn {
+    margin-top: 20px;
+    background-color: #ffebee;
+    border-color: #ffcdd2;
+    color: #c62828;
+}
+
+.logout-btn:hover {
+    background-color: #ffcdd2;
+    color: #b71c1c;
+}
+
+/* Секция контента */
+.content-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 30px;
+}
+
+/* Стили для вкладок */
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #666;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.tab-btn:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: transparent;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.tab-btn.active:after {
+    background-color: var(--primary-color);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Карточка заказа */
+.order-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.order-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.order-id {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.order-date {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.order-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.order-status.processing {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.order-status.shipped {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.order-status.delivered {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.order-status.cancelled {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.order-items {
+    margin-bottom: 15px;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-item-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.order-item-info {
+    flex: 1;
+}
+
+.order-item-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.order-item-price {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.order-item-quantity {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.order-total {
+    text-align: right;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+/* Обновленные стили для избранных рецептов */
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 10px;
+}
+
+.favorite-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.favorite-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.favorite-img-container {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.favorite-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.favorite-card:hover .favorite-img {
+    transform: scale(1.05);
+}
+
+.favorite-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.favorite-title {
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    color: #222;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.favorite-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.favorite-time {
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.favorite-difficulty {
+    background: rgba(25, 118, 210, 0.1);
+    color: #1976d2;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.favorite-difficulty.kids {
+    background: rgba(194, 24, 91, 0.1);
+    color: #c2185b;
+}
+
+.favorite-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.favorite-remove {
+    background: rgba(255, 255, 255, 0.9);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff4757;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.favorite-remove:hover {
+    background: #ff4757;
+    color: white;
+    transform: scale(1.1);
+}
+
+.favorite-remove i {
+    font-size: 1rem;
+}
+
+.btn-recipe {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-recipe:hover {
+    background: var(--primary-dark-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.difficulty-icon {
+    font-size: 0.8rem;
+}
+
+.time-icon {
+    font-size: 0.8rem;
+}
+
+/* Анимация при загрузке */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.favorite-card {
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+}
+
+.favorite-card:nth-child(1) { animation-delay: 0.1s; }
+.favorite-card:nth-child(2) { animation-delay: 0.2s; }
+.favorite-card:nth-child(3) { animation-delay: 0.3s; }
+.favorite-card:nth-child(4) { animation-delay: 0.4s; }
+.favorite-card:nth-child(5) { animation-delay: 0.5s; }
+.favorite-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Плейсхолдеры */
+.order-placeholder, .favorites-placeholder {
+    text-align: center;
+    padding: 50px 20px;
+    color: #999;
+}
+
+.order-placeholder i {
+    font-size: 3rem;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.favorites-placeholder i {
+    font-size: 3rem;
+    color: #ff6b81;
+    margin-bottom: 15px;
+    opacity: 0.3;
+}
+
+.order-placeholder p, .favorites-placeholder p {
+    margin-bottom: 20px;
+}
+
+/* Обновленные стили для заказов */
+.order-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+
+.order-header-main {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.order-toggle {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.order-content {
+    transition: all 0.3s ease;
+    display: none;
+}
+
+.order-content.active {
+    display: block;
+}
+
+.order-items {
+    margin: 15px 0;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-item-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.order-item-info {
+    flex: 1;
+}
+
+.order-item-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--dark-color);
+}
+
+.order-item-meta {
+    display: flex;
+    gap: 15px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.delivery-method {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.order-actions {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.order-total {
+    font-weight: 700;
+    color: var(--dark-color);
+    font-size: 1.1rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-card {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .order-item-img {
+        margin-bottom: 10px;
+    }
+    
+    .favorite-card {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .favorite-img-container {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+/* Добавляем новые стили для аватара */
+.profile-avatar-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 30px;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color: white;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.avatar-edit-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.avatar-edit-btn:hover {
+    background-color: var(--primary-dark-color);
+    transform: scale(1.1);
+}
+
+/* Обновленные стили для модального окна */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    border-radius: 16px 16px 0 0;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.modal-close:hover {
+    color: var(--primary-color);
+    background-color: rgba(0,0,0,0.05);
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    padding: 15px 25px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    background-color: #f9f9f9;
+    border-radius: 0 0 16px 16px;
+}
+
+/* Обновленные стили для выбора аватара */
+.avatar-options {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.avatar-options h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.avatar-options h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+}
+
+.avatar-icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.avatar-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 20px 15px;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background-color: #f9f9f9;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.avatar-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: transparent;
+    transition: all 0.3s;
+}
+
+.avatar-icon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    background-color: white;
+}
+
+.avatar-icon i {
+    font-size: 2.2rem;
+    color: var(--dark-color);
+    transition: all 0.3s;
+}
+
+.avatar-icon span {
+    font-size: 0.95rem;
+    color: #666;
+    transition: all 0.3s;
+}
+
+.avatar-icon.selected {
+    background-color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.2);
+}
+
+.avatar-icon.selected::before {
+    background-color: var(--primary-color);
+}
+
+.avatar-icon.selected i {
+    color: var(--primary-color);
+}
+
+.avatar-icon.selected span {
+    color: var(--dark-color);
+    font-weight: 500;
+}
+
+/* Обновленные стили для выбора цвета */
+.color-options {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.color-option {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid white;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+.color-option.selected {
+    border: 3px solid var(--dark-color);
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.color-option.selected::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.9rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Кнопки в модальном окне */
+.modal-footer .btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-footer .btn-outline {
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.modal-footer .btn-outline:hover {
+    background-color: #f5f5f5;
+}
+
+.modal-footer #save-avatar-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.modal-footer #save-avatar-btn:hover {
+    background-color: var(--primary-dark-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .avatar-icons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .color-options {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .modal-footer .btn {
+        width: 100%;
+    }
+}
+
+/* Стили для аватара в шапке */
+.header-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 15px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-avatar i {
+    font-size: 18px;
+    color: white;
+}
+
+.header-avatar:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
